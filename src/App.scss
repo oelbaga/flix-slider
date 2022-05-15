@@ -1,84 +1,88 @@
-.sliderContainer {
-  position: relative;
-  padding: 0 4%;
-  overflow: hidden;
-  .sliderMask {
-    overflow-x: visible;
-    display: block;
-    .slides {
-      white-space: nowrap;
-      transform: translate3d(-0%, 0px, 0px);
-      transition: transform 0.5s;
-      .slide {
-        width: 25%;
-        -webkit-transform: translateZ(0);
-        display: inline-block;
-        position: relative;
-        white-space: normal;
-        vertical-align: top;
-        padding: 0 0.2vw;
-        box-sizing: border-box;
-        &:first-child {
-          padding-left: 0;
-        }
-        &:last-child {
-          padding-right: 0;
-        }
-        .slideArt {
-          width: 100%;
-          height: 0;
+.App {
+  margin-top: 20vh;
+  .sliderContainer {
+    position: relative;
+    padding: 0 4%;
+    overflow: hidden;
+    touch-action: pan-y;
+    .sliderMask {
+      overflow-x: visible;
+      display: block;
+      .slides {
+        white-space: nowrap;
+        transform: translate3d(-0%, 0px, 0px);
+        transition: transform 0.5s;
+        .slide {
+          width: 25%;
+          -webkit-transform: translateZ(0);
+          display: inline-block;
           position: relative;
-          overflow: hidden;
-          padding: 28.125% 0;
-          img {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
+          white-space: normal;
+          vertical-align: top;
+          padding: 0 0.2vw;
+          box-sizing: border-box;
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            padding-right: 0;
+          }
+          .slideArt {
             width: 100%;
-            object-fit: cover;
-            object-position: center;
-            height: 100%;
+            height: 0;
+            position: relative;
+            overflow: hidden;
+            padding: 28.125% 0;
+            img {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              object-fit: cover;
+              object-position: center;
+              height: 100%;
+            }
           }
         }
       }
     }
-  }
-  .arrow {
-    position: absolute;
-    top: -2px;
-    display: flex;
-    bottom: 0;
-    justify-content: center;
-    width: 4%;
-    height: 100%;
-    cursor: pointer;
-    background: rgba(20, 20, 20, 0.7);
-    z-index: 20;
-    text-align: center;
-    color: white;
-    align-items: center;
-    &::before {
-      font-family: arial;
-      width: 30px;
-      height: 30px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-    &.next {
-      right: -2px;
+    .arrow {
+      position: absolute;
+      top: -2px;
+      display: flex;
+      bottom: 0;
+      justify-content: center;
+      width: 4%;
+      height: 100%;
+      cursor: pointer;
+      background: rgba(20, 20, 20, 0.7);
+      z-index: 20;
+      text-align: center;
+      color: white;
+      align-items: center;
       &::before {
-        content: "";
-        background-image: url(/arrow-next.svg);
+        font-family: arial;
+        width: 30px;
+        height: 30px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
       }
-    }
-    &.prev {
-      left: -2px;
-      &::before {
-        content: "";
-        background-image: url(/arrow-prev.svg);
+      &.next {
+        right: -2px;
+        &::before {
+          content: "";
+          background-image: url(/arrow-next.svg);
+        }
+      }
+      &.prev {
+        left: -2px;
+        &::before {
+          content: "";
+          background-image: url(/arrow-prev.svg);
+        }
       }
     }
   }

@@ -3,13 +3,13 @@ import "./App.scss";
 import Slide from "./components/Slide";
 import imagesData from "./data/images.json";
 function App() {
+  const slidesPerScreen = 3;
   const showDebug = false;
   const [pushPercent, setpushPercent] = useState(0);
   const [firstSlideRow, setfirstSlideRow] = useState(true);
   const [lastSlideRow, setlastSlideRow] = useState(false);
   const images = imagesData;
   const totalImages = imagesData.length;
-  const slidesPerScreen = 3;
   const percentofScreen = 100 / slidesPerScreen;
   const slideCountAllowed = Math.trunc(totalImages / slidesPerScreen);
   const [slideCount, setslideCount] = useState(0);
