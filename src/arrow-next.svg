@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="33" viewBox="0 0 28 46">
+  <style>
+		path { fill: white; } 
+	</style>
+  <path
+    d="m6.2 42.9l-2.8-2.9 17.1-17.1-17.1-17.1 2.8-2.9 20 20z"
+  />
+</svg>
