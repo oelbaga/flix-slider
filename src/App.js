@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.scss";
 import Slide from "./components/Slide";
 import imagesData from "./data/images.json";
 function App() {
-  const slidesPerScreen = 3;
-  const showDebug = false;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [pushPercent, setpushPercent] = useState(0);
+  const mobileslidesPerScreen = 2;
+  const desktopslidesPerScreen = 3;
+  let slidesPerScreen;
+  if (windowWidth < 768) {
+    slidesPerScreen = 2;
+  } else {
+    slidesPerScreen = 3;
+  }
+  const showDebug = false;
   const [firstSlideRow, setfirstSlideRow] = useState(true);
   const [lastSlideRow, setlastSlideRow] = useState(false);
   const images = imagesData;
@@ -37,10 +45,26 @@ function App() {
       setpushPercent(pushPercent + -100);
     }
   }
+
+  useEffect(() => {
+    function handleResize() {
+      //reset everything on resize since slide function depends on amount of slides
+      setWindowWidth(window.innerWidth);
+      setpushPercent(0);
+      setfirstSlideRow(true);
+      setlastSlideRow(false);
+      setslideCount(0);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="App">
       {showDebug && (
         <div>
+          width size:
+          {windowWidth}
           {slideCountAllowed - slideCount}
           first: {firstSlideRow.toString()} | Last: {lastSlideRow.toString()}
           <div>

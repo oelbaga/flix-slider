@@ -1,10 +1,15 @@
 .App {
   margin-top: 20vh;
+  width: 100%;
   .sliderContainer {
     position: relative;
-    padding: 0 4%;
-    overflow: hidden;
-    touch-action: pan-y;
+    padding: 0 6%;
+    touch-action: pan-x;
+    overflow-x: auto;
+    @media only screen and (min-width: 500px) {
+      padding: 0 4%;
+      overflow-x: hidden;
+    }
     .sliderMask {
       overflow-x: visible;
       display: block;
@@ -32,7 +37,10 @@
             height: 0;
             position: relative;
             overflow: hidden;
-            padding: 28.125% 0;
+            padding: 32.125% 0;
+            @media only screen and (min-width: 500px) {
+              padding: 28.125% 0;
+            }
             img {
               position: absolute;
               top: 0;
@@ -50,11 +58,11 @@
     }
     .arrow {
       position: absolute;
-      top: -2px;
-      display: flex;
+      top: 0px;
+      display: none;
       bottom: 0;
       justify-content: center;
-      width: 4%;
+      width: 6%;
       height: 100%;
       cursor: pointer;
       background: rgba(20, 20, 20, 0.7);
@@ -62,6 +70,11 @@
       text-align: center;
       color: white;
       align-items: center;
+
+      @media only screen and (min-width: 500px) {
+        width: 4%;
+        display: flex;
+      }
       &::before {
         font-family: arial;
         width: 30px;
