@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.scss";
+import styles from "./App.module.scss";
 import Slide from "./components/Slide";
 import imagesData from "./data/images.json";
 function App() {
@@ -7,13 +7,15 @@ function App() {
   const [pushPercent, setpushPercent] = useState(0);
   const mobileslidesPerScreen = 2;
   const desktopslidesPerScreen = 3;
+  const showDebug = false;
+  const offsetPercentage = 4;
+  const showOffsetOverlay = true;
   let slidesPerScreen;
   if (windowWidth < 768) {
-    slidesPerScreen = 2;
+    slidesPerScreen = mobileslidesPerScreen;
   } else {
-    slidesPerScreen = 3;
+    slidesPerScreen = desktopslidesPerScreen;
   }
-  const showDebug = false;
   const [firstSlideRow, setfirstSlideRow] = useState(true);
   const [lastSlideRow, setlastSlideRow] = useState(false);
   const images = imagesData;
@@ -26,7 +28,6 @@ function App() {
     if (slideCountAllowed - slideCount === 2) {
       setlastSlideRow(true);
     }
-
     if (!lastSlideRow) {
       if (slideCount !== slideCountAllowed) {
         setslideCount((prev) => prev + 1);
@@ -60,7 +61,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       {showDebug && (
         <div>
           width size:
@@ -73,10 +74,13 @@ function App() {
         </div>
       )}
 
-      <div className="sliderContainer">
-        <div className="sliderMask">
+      <div
+        className={styles.sliderContainer}
+        style={{ padding: `0 ${offsetPercentage}%` }}
+      >
+        <div className={styles.sliderMask}>
           <div
-            className="slides"
+            className={styles.slides}
             style={{
               transform: "translate3d(-" + pushPercent + "%, 0px, 0px)",
             }}
@@ -92,10 +96,22 @@ function App() {
           </div>
         </div>
         {!firstSlideRow && (
-          <span className="prev arrow" onClick={handlePrev}></span>
+          <span
+            className={`${styles.prev} ${styles.arrow} ${
+              showOffsetOverlay === false && styles.removeoffset
+            }`}
+            onClick={handlePrev}
+            style={{ width: `${offsetPercentage}%` }}
+          ></span>
         )}
         {!lastSlideRow && (
-          <span className="next arrow" onClick={handleNext}></span>
+          <span
+            className={`${styles.next} ${styles.arrow} ${
+              showOffsetOverlay === false && styles.removeoffset
+            }`}
+            onClick={handleNext}
+            style={{ width: `${offsetPercentage}%` }}
+          ></span>
         )}
       </div>
     </div>
