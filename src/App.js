@@ -10,6 +10,7 @@ function App() {
   const showDebug = false;
   const offsetPercentage = 4;
   const showOffsetOverlay = true;
+  const transitionSpeed = 0.45;
   let slidesPerScreen;
   if (windowWidth < 768) {
     slidesPerScreen = mobileslidesPerScreen;
@@ -83,6 +84,7 @@ function App() {
             className={styles.slides}
             style={{
               transform: "translate3d(-" + pushPercent + "%, 0px, 0px)",
+              transition: `transform ${transitionSpeed}s`,
             }}
           >
             {images.map((item) => {
